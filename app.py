@@ -5,14 +5,19 @@ from flask import Flask, jsonify, request
 # Create a Flask app
 app = Flask(__name__)
 
-# URL of the Google Drive direct download link for your model
-model_url = 'https://drive.google.com/file/d/1-EDNlqPttbXC1x7bxz72Myac-YSflc8S/view?usp=drive_link'
+# Direct download URL for your model
+model_url = 'https://drive.google.com/uc?export=download&id=1-EDNlqPttbXC1x7bxz72Myac-YSflc8S'
 model_path = 'model.pkl'
 
 # Download the model from Google Drive
 def download_model():
     response = requests.get(model_url)
     if response.status_code == 200:
+        # Check if the response is a valid file by looking at the content type
+        if 'text/html' in response.headers.get('Content-Type'):
+            print("Error: Received an HTML page, likely a Google Drive warning or error.")
+            print(response.text)  # Print the content to debug
+            raise Exception("Model download failed due to an error page.")
         with open(model_path, 'wb') as file:
             file.write(response.content)
         print("Model downloaded successfully.")
