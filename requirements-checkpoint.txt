@@ -1,0 +1,7 @@
+Flask
+google-api-python-client
+scikit-learn
+numpy
+pandas
+matplotlib
+pickle-mixin 
