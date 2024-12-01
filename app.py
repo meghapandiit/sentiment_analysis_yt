@@ -6,7 +6,7 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 # Direct download URL for your model
-model_url = 'https://drive.google.com/uc?export=download&id=1-EDNlqPttbXC1x7bxz72Myac-YSflc8S'
+model_url = 'https://drive.google.com/file/d/1-EDNlqPttbXC1x7bxz72Myac-YSflc8S/view?usp=sharing'
 model_path = 'model.pkl'
 
 # Download the model from Google Drive
